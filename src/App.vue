@@ -1,47 +1,27 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <section>
+    <h1>Counter: {{ counter }}</h1>
+    <h2>Square: {{ square }}</h2>
+    <button @click="increment">Increment</button>
+    <button @click="decrement">Decrement</button>
+    <button @click="reset">Reset</button>
+  </section>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script lang="ts" setup> // lang="ts" es para que el script sea en typescript
+  import { ref, computed } from 'vue';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+  const counter = ref(0);
+  const increment = () => counter.value++; // .value solo es necesario en el setup, en el template no
+  const decrement = () => counter.value--;
+  const reset = () => counter.value = 0;
+  const square = computed(() => counter.value * 2); // Dependencia reactiva de counter
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  // No se necesitar un return porque el setup se encarga de eso.
+</script>
+
+<style scoped> /* scoped es para que el estilo solo afecte a este componente */
+  h1 {
+    color: red;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
