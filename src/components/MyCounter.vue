@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1 class="text-3xl font-bold underline">Counter: {{ counter }}</h1>
-    <h2>Square: {{ squareCounter }}</h2>
+    <h2 data-testid="square-label">Square: {{ squareCounter }}</h2>
     <button class="btn mr-2" @click="counter++">Increment</button>
     <button class="btn mr-2" @click="counter--">Decrement</button>
   </section>
@@ -14,7 +14,7 @@
     value: number;
   }>();
 
-  const { counter, squareCounter } = useCounter(10)
+  const { counter, squareCounter } = useCounter(props.value)
   /*
   const increment = () => counter.value++; // .value solo es necesario en el setup, en el template no
   const decrement = () => counter.value--;

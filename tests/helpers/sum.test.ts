@@ -21,7 +21,7 @@ describe('add function', () => {
 
 describe('addArray function', () => {
   test('Should return 0 if the array is empty', () => {
-    const arr = [];
+    const arr: any[] = [];
 
     const result = addArray(arr);
 

@@ -26,12 +26,13 @@
     messages: ChatMessage[];
   }
 
-  const { messages } = defineProps<Props>();
+  const props = defineProps<Props>();
 
   const chatRef = ref<HTMLDivElement | null>(null);
 
   // watch: Ejecuta una funcion cada vez que cambia una variable
-  watch( messages, () => {
+  watch( props, () => {
+    console.log('Messages changed');
     setTimeout(() => {
       chatRef.value?.scrollTo({
         top: chatRef.value.scrollHeight, // scrollHeight es la altura total del div
